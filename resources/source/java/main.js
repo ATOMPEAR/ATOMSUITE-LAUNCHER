@@ -9,6 +9,7 @@ function createWindow () {
     width: 800,
     height: 600,
     frame: false,
+    transparent: true,  // Add this line to enable transparency
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
