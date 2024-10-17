@@ -89,25 +89,31 @@ function createTray() {
   if (tray === null) {
     tray = new Tray(path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'))
     const contextMenu = Menu.buildFromTemplate([
-      { label: 'SHOW', click: () => {
-        restoreWindowState()
-        mainWindow.show()
-        mainWindow.setSkipTaskbar(false)  // Show in taskbar
-      }},
-      { label: 'MINIMIZE', click: () => {
-        mainWindow.minimize()
-        mainWindow.setSkipTaskbar(true)  // Hide from taskbar when minimized
-      }},
-      { label: 'POSITION', click: () => {
-        mainWindow.setBounds({
-          x: originalPosition.x,
-          y: originalPosition.y,
-          width: windowState.width,
-          height: windowState.height
-        })
-        mainWindow.show()
-        mainWindow.setSkipTaskbar(false)  // Show in taskbar
-      }},
+      {
+        label: 'CONTROLS',
+        submenu: [
+          { label: 'SHOW', click: () => {
+            restoreWindowState()
+            mainWindow.show()
+            mainWindow.setSkipTaskbar(false)  // Show in taskbar
+          }},
+          { label: 'MINIMIZE', click: () => {
+            mainWindow.minimize()
+            mainWindow.setSkipTaskbar(true)  // Hide from taskbar when minimized
+          }},
+          { label: 'POSITION', click: () => {
+            mainWindow.setBounds({
+              x: originalPosition.x,
+              y: originalPosition.y,
+              width: windowState.width,
+              height: windowState.height
+            })
+            mainWindow.show()
+            mainWindow.setSkipTaskbar(false)  // Show in taskbar
+          }}
+        ]
+      },
+      { type: 'separator' },
       { label: 'QUIT', click: () => {
         app.isQuitting = true
         app.quit()
@@ -136,17 +142,28 @@ function createTray() {
 
 function createTitlebarIconContextMenu() {
   return Menu.buildFromTemplate([
-    { label: 'MINIMIZE', click: () => mainWindow.minimize() },
-    { label: 'POSITION', click: () => {
-      mainWindow.setBounds({
-        x: originalPosition.x,
-        y: originalPosition.y,
-        width: windowState.width,
-        height: windowState.height
-      })
-      mainWindow.show()
-      mainWindow.setSkipTaskbar(false)  // Show in taskbar
-    }},
+    {
+      label: 'CONTROLS',
+      submenu: [
+        { label: 'SHOW', click: () => {
+          restoreWindowState()
+          mainWindow.show()
+          mainWindow.setSkipTaskbar(false)  // Show in taskbar
+        }},
+        { label: 'MINIMIZE', click: () => mainWindow.minimize() },
+        { label: 'POSITION', click: () => {
+          mainWindow.setBounds({
+            x: originalPosition.x,
+            y: originalPosition.y,
+            width: windowState.width,
+            height: windowState.height
+          })
+          mainWindow.show()
+          mainWindow.setSkipTaskbar(false)  // Show in taskbar
+        }}
+      ]
+    },
+    { type: 'separator' },
     { label: 'QUIT', click: () => {
       app.isQuitting = true
       app.quit()
