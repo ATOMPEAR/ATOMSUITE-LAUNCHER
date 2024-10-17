@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.electronAPI.closeWindow()
   })
 
+  document.getElementById('snap-button').addEventListener('click', () => {
+    window.electronAPI.snapWindow()
+  })
+
   // Titlebar icon click functionality
   const titlebarIcon = document.getElementById('titlebar-icon');
   const mainContent1 = document.getElementById('main-content-1');

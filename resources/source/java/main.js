@@ -10,6 +10,11 @@ let windowState = {
   y: undefined
 }
 
+let originalPosition = {
+  x: undefined,
+  y: undefined
+}
+
 function createWindow () {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
   const windowWidth = 400
@@ -21,6 +26,11 @@ function createWindow () {
     height: windowHeight,
     x: width - windowWidth - padding,
     y: height - windowHeight - padding
+  }
+
+  originalPosition = {
+    x: windowState.x,
+    y: windowState.y
   }
 
   mainWindow = new BrowserWindow({
@@ -48,9 +58,6 @@ function createWindow () {
     storeWindowState()
     mainWindow.hide()
     mainWindow.setSkipTaskbar(true)  // Hide from taskbar
-    if (tray === null) {
-      createTray()
-    }
   })
 
   mainWindow.on('close', (event) => {
@@ -59,11 +66,8 @@ function createWindow () {
       storeWindowState()
       mainWindow.hide()
       mainWindow.setSkipTaskbar(true)  // Hide from taskbar
-      if (tray === null) {
-        createTray()
-      }
+      return false
     }
-    return false
   })
 }
 
@@ -82,35 +86,67 @@ function restoreWindowState() {
 }
 
 function createTray() {
-  tray = new Tray(path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'))
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'SHOW', click: () => {
-      restoreWindowState()
-      mainWindow.show()
-      mainWindow.setSkipTaskbar(false)  // Show in taskbar
-      if (tray) tray.destroy()
-      tray = null
-    }},
-    { label: 'QUIT', click: () => {
-      app.isQuitting = true
-      app.quit()
-    }}
-  ])
-  tray.setToolTip('AtomSuite Boilerplate')
-  tray.setContextMenu(contextMenu)
+  if (tray === null) {
+    tray = new Tray(path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'))
+    const contextMenu = Menu.buildFromTemplate([
+      { label: 'SHOW', click: () => {
+        restoreWindowState()
+        mainWindow.show()
+        mainWindow.setSkipTaskbar(false)  // Show in taskbar
+      }},
+      { label: 'MINIMIZE', click: () => {
+        mainWindow.minimize()
+        mainWindow.setSkipTaskbar(true)  // Hide from taskbar when minimized
+      }},
+      { label: 'POSITION', click: () => {
+        mainWindow.setBounds({
+          x: originalPosition.x,
+          y: originalPosition.y,
+          width: windowState.width,
+          height: windowState.height
+        })
+        mainWindow.show()
+        mainWindow.setSkipTaskbar(false)  // Show in taskbar
+      }},
+      { label: 'QUIT', click: () => {
+        app.isQuitting = true
+        app.quit()
+      }}
+    ])
+    tray.setToolTip('AtomSuite Boilerplate')
+    tray.setContextMenu(contextMenu)
 
-  tray.on('click', () => {
-    restoreWindowState()
-    mainWindow.show()
-    mainWindow.setSkipTaskbar(false)  // Show in taskbar
-    if (tray) tray.destroy()
-    tray = null
-  })
+    tray.on('click', () => {
+      if (mainWindow.isVisible()) {
+        if (mainWindow.isMinimized()) {
+          mainWindow.restore()
+          mainWindow.setSkipTaskbar(false)
+        } else {
+          mainWindow.minimize()
+          mainWindow.setSkipTaskbar(true)
+        }
+      } else {
+        restoreWindowState()
+        mainWindow.show()
+        mainWindow.setSkipTaskbar(false)
+      }
+    })
+  }
 }
 
 function createTitlebarIconContextMenu() {
   return Menu.buildFromTemplate([
     { label: 'MINIMIZE', click: () => mainWindow.minimize() },
+    { label: 'POSITION', click: () => {
+      mainWindow.setBounds({
+        x: originalPosition.x,
+        y: originalPosition.y,
+        width: windowState.width,
+        height: windowState.height
+      })
+      mainWindow.show()
+      mainWindow.setSkipTaskbar(false)  // Show in taskbar
+    }},
     { label: 'QUIT', click: () => {
       app.isQuitting = true
       app.quit()
@@ -120,6 +156,7 @@ function createTitlebarIconContextMenu() {
 
 app.whenReady().then(() => {
   createWindow()
+  createTray()  // Create tray icon when app is ready
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -152,4 +189,15 @@ ipcMain.handle('minimize-window', () => {
 ipcMain.handle('close-window', () => {
   app.isQuitting = true
   app.quit()
+})
+
+ipcMain.handle('snap-window', () => {
+  if (mainWindow) {
+    mainWindow.setBounds({
+      x: originalPosition.x,
+      y: originalPosition.y,
+      width: windowState.width,
+      height: windowState.height
+    })
+  }
 })

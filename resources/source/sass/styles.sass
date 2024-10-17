@@ -63,7 +63,7 @@ body
   -webkit-app-region: drag
   color: $titlebar-text-color
   -webkit-user-select: none
-  padding: 0 5px  // Reduce right padding to move controls closer to the edge
+  padding: 0 5px // Reduce right padding to move controls closer to the edge
 
   &::before,
   &::after
@@ -101,9 +101,9 @@ body
     &::after
       content: attr(data-tooltip)
       position: absolute
-      top: 50%  // Center vertically
-      left: 100%  // Position to the right of the icon
-      transform: translateY(-50%)  // Center vertically
+      top: 50% // Center vertically
+      left: 100% // Position to the right of the icon
+      transform: translateY(-50%) // Center vertically
       background-color: $titlebar-background
       color: $titlebar-text-color
       padding: 4px 8px
@@ -115,7 +115,7 @@ body
       transition: opacity 0.3s ease, visibility 0.3s ease
       pointer-events: none
       z-index: 1000
-      margin-left: 10px  // Add some space between the icon and the tooltip
+      margin-left: 10px // Add some space between the icon and the tooltip
       font-family: 'Terminus Nerd Font', $font-stack
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
       font-weight: normal
@@ -130,12 +130,12 @@ body
     text-align: center
     text-transform: uppercase
     font-family: 'Terminus Nerd Font Bold', $font-stack
-    font-size: 14px  // Adjust this value as needed
+    font-size: 14px // Adjust this value as needed
 
   #window-controls
     display: flex
     -webkit-app-region: no-drag
-    margin-right: -2px  // Move controls slightly to the right
+    margin-right: -2px // Move controls slightly to the right
 
 .control-button
   width: 12px
@@ -143,7 +143,7 @@ body
   border-radius: 50%
   border: none
   margin-top: -5px
-  margin-right: 5px  // Reduce right margin between buttons
+  margin-right: 5px // Reduce right margin between buttons
   background-color: $control-button-color
   transition: background-color 0.3s ease
   position: relative
@@ -182,7 +182,13 @@ body
     visibility: visible
 
   &:last-child
-    margin-right: 0  // Remove right margin from the last button
+    margin-right: 0 // Remove right margin from the last button
+
+  &#snap-button
+    background-color: #FFD700 // Gold color for the snap button
+
+  &#snap-button:hover
+    background-color: #FFA500 // Orange color on hover
 
 // Content styles
 #content

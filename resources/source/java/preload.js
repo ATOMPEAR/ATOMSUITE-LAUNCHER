@@ -5,4 +5,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   showTitlebarIconContextMenu: () => ipcRenderer.invoke('show-titlebar-icon-context-menu'),
   minimizeWindow: () => ipcRenderer.invoke('minimize-window'),
   closeWindow: () => ipcRenderer.invoke('close-window'),
+  snapWindow: () => ipcRenderer.invoke('snap-window'),
 })

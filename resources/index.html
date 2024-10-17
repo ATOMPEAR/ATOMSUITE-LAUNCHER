@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AtomSuite Launcher</title>
-    <script type="text/javascript" src="https://kit.fontawesome.com/dbd1c218fe.js"></script>
-    <link rel="stylesheet" href="./source/sass/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AtomSuite Launcher</title>
+  <script type="text/javascript" src="https://kit.fontawesome.com/dbd1c218fe.js"></script>
+  <link rel="stylesheet" href="./source/sass/styles.css">
 </head>
+
 <body>
-    <div id="titlebar">
-        <div id="titlebar-left">
-            <i id="titlebar-icon" class="fa-solid fa-bars" data-tooltip="MENU"></i>
-        </div>
-        <div id="window-title">AtomSuite Launcher</div>
-        <div id="window-controls">
-            <button id="minimize-button" class="control-button" data-tooltip="MINIMIZE"></button>
-            <button id="close-button" class="control-button" data-tooltip="CLOSE"></button>
-        </div>
+  <div id="titlebar">
+    <div id="titlebar-left">
+      <i id="titlebar-icon" class="fa-solid fa-bars" data-tooltip="MENU"></i>
     </div>
-    <div id="content">
-        <div id="main-content-1" class="main-content active">
-            <h1>Main Content 1</h1>
-            <p>This is the first main content area.</p>
-        </div>
-        <div id="main-content-2" class="main-content">
-            <h1>Main Content 2</h1>
-            <p>This is the second main content area.</p>
-        </div>
+    <div id="window-title">AtomSuite Launcher</div>
+    <div id="window-controls">
+      <button id="snap-button" class="control-button" data-tooltip="SNAP"></button>
+      <button id="minimize-button" class="control-button" data-tooltip="MINIMIZE"></button>
+      <button id="close-button" class="control-button" data-tooltip="CLOSE"></button>
     </div>
-    <script src="./source/java/renderer.js"></script>
+  </div>
+  <div id="content">
+    <div id="main-content-1" class="main-content active">
+      <h1>Main Content 1</h1>
+      <p>This is the first main content area.</p>
+    </div>
+    <div id="main-content-2" class="main-content">
+      <h1>Main Content 2</h1>
+      <p>This is the second main content area.</p>
+    </div>
+  </div>
+  <script src="./source/java/renderer.js"></script>
 </body>
+
 </html>
