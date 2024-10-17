@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mainContent1.classList.add('active');
       mainContent1.style.display = 'flex';
       window.electronAPI.resizeAndMoveWindow(400, 'right');
+      window.electronAPI.snapWindow(); // Add this line to set window to original position
     }
   });
 
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mainContent2.classList.remove('active');
   mainContent2.style.display = 'none';
   window.electronAPI.resizeAndMoveWindow(400, 'right');
+  window.electronAPI.snapWindow(); // Add this line to set initial window position
 
   // Titlebar icon context menu functionality
   titlebarIcon.addEventListener('contextmenu', (e) => {
