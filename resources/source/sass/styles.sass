@@ -198,17 +198,104 @@ body
   width: 100%
   margin: 0
   padding: 0
-  overflow: auto
+  // Remove the overflow: auto from here
 
   &.active
     display: flex
     flex-direction: column
 
+#main-content-1, #main-content-2
+  display: none
+  flex-direction: column
+  align-items: center
+  width: 400px
+  height: 100%
+  padding: 0
+  overflow: hidden
+
+  &.active
+    // Remove the display: flex from here
+
 #main-content-1
   background-color: $main-content-1-background
 
+  .quick-command
+    width: 400px
+    height: 30px
+    background-color: #666666
+    margin-bottom: 0
+    display: flex
+    align-items: center
+
+    input[type="text"]
+      width: 340px // Reduced width to make room for submit button
+      height: 100%
+      border: none
+      padding-left: 20px
+      box-sizing: border-box
+      background-color: #222222
+      color: #01a2ff // Change text color to #01a2ff
+      outline: none
+      font-family: 'Terminus Nerd Font', $font-stack
+      font-size: 12px
+      text-transform: uppercase
+      font-weight: light
+      transition: font-size 0.3s ease, color 0.3s ease // Add transition for color change
+
+      &::placeholder
+        color: #ffffff // Keep placeholder color white
+        opacity: 1 // Ensure full opacity for the placeholder
+
+      &:not(:focus)
+        color: #ffffff // Keep text color white when not focused
+
+      &:focus
+        font-size: 12.5px // Change font size to 14px when input is focused
+        color: #01a2ff // Ensure text color is #01a2ff when focused
+        letter-spacing: .5px
+
+    input[type="submit"]
+      width: 60px
+      height: 100%
+      border: none
+      background-color: #222222
+      color: #ffffff
+      font-family: 'Terminus Nerd Font Bold', $font-stack
+      font-size: 14px
+      text-transform: uppercase
+      cursor: pointer
+      transition: background-color 0.3s ease
+
+      &:hover
+        background-color: #01a2ff
+        color: #ffffff
+
+  .content-wrapper
+    display: flex
+    width: 400px
+    flex-grow: 1
+    overflow: hidden
+
+    .left-div, .right-div
+      width: 200px
+      height: 100%
+      overflow-y: auto // Keep this to allow scrolling within these divs if needed
+
+    .left-div
+      margin-right: 0
+      background-color: #ffffff
+
+    .right-div
+      margin-left: 0
+      background-color: #222222
+
 #main-content-2
   background-color: $main-content-2-background
+  justify-content: center // Center content vertically
+
+  h1, p
+    color: #ffffff // Ensure text is visible on dark background
+    text-align: center
 
 // Responsive design
 @media (max-width: 600px)

@@ -233,7 +233,6 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: auto;
 }
 
 .main-content.active {
@@ -248,6 +247,127 @@ body {
 
 #main-content-1 {
   background-color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+#main-content-1 .quick-command {
+  width: 400px;
+  height: 30px;
+  background-color: #666666;
+  margin-bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main-content-1 .quick-command input[type="text"] {
+  width: 340px;
+  height: 100%;
+  border: none;
+  padding-left: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #222222;
+  color: #01a2ff;
+  outline: none;
+  font-family: "Terminus Nerd Font", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: light;
+  -webkit-transition: font-size 0.3s ease, color 0.3s ease;
+  transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+#main-content-1 .quick-command input[type="text"]::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+#main-content-1 .quick-command input[type="text"]:-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+#main-content-1 .quick-command input[type="text"]::-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+#main-content-1 .quick-command input[type="text"]::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+#main-content-1 .quick-command input[type="text"]:not(:focus) {
+  color: #ffffff;
+}
+
+#main-content-1 .quick-command input[type="text"]:focus {
+  font-size: 12.5px;
+  color: #01a2ff;
+  letter-spacing: .5px;
+}
+
+#main-content-1 .quick-command input[type="submit"] {
+  width: 60px;
+  height: 100%;
+  border: none;
+  background-color: #222222;
+  color: #ffffff;
+  font-family: "Terminus Nerd Font Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+#main-content-1 .quick-command input[type="submit"]:hover {
+  background-color: #01a2ff;
+  color: #ffffff;
+}
+
+#main-content-1 .content-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 400px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: hidden;
+}
+
+#main-content-1 .content-wrapper .left-div, #main-content-1 .content-wrapper .right-div {
+  width: 200px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+#main-content-1 .content-wrapper .left-div {
+  margin-right: 0;
+  background-color: #ffffff;
+}
+
+#main-content-1 .content-wrapper .right-div {
+  margin-left: 0;
+  background-color: #222222;
 }
 
 #main-content-2 {
