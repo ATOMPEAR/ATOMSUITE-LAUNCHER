@@ -88,39 +88,53 @@ function restoreWindowState() {
 function createTray() {
   if (tray === null) {
     tray = new Tray(path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'))
-    const contextMenu = Menu.buildFromTemplate([
-      {
-        label: 'CONTROLS',
-        submenu: [
-          { label: 'SHOW', click: () => {
-            restoreWindowState()
-            mainWindow.show()
-            mainWindow.setSkipTaskbar(false)  // Show in taskbar
-          }},
-          { label: 'MINIMIZE', click: () => {
-            mainWindow.minimize()
-            mainWindow.setSkipTaskbar(true)  // Hide from taskbar when minimized
-          }},
-          { label: 'POSITION', click: () => {
-            mainWindow.setBounds({
-              x: originalPosition.x,
-              y: originalPosition.y,
-              width: windowState.width,
-              height: windowState.height
-            })
-            mainWindow.show()
-            mainWindow.setSkipTaskbar(false)  // Show in taskbar
-          }}
-        ]
-      },
-      { type: 'separator' },
-      { label: 'QUIT', click: () => {
-        app.isQuitting = true
-        app.quit()
-      }}
-    ])
+
+    function getContextMenu() {
+      const isVisible = mainWindow.isVisible() && !mainWindow.isMinimized();
+      return Menu.buildFromTemplate([
+        {
+          label: 'CONTROLS',
+          submenu: [
+            ...(isVisible ? [{
+              label: 'MINIMIZE',
+              click: () => {
+                mainWindow.minimize()
+                mainWindow.setSkipTaskbar(true)  // Hide from taskbar when minimized
+                tray.setContextMenu(getContextMenu())  // Update menu
+              }
+            }] : []),
+            ...((!isVisible) ? [{
+              label: 'SHOW',
+              click: () => {
+                restoreWindowState()
+                mainWindow.show()
+                mainWindow.setSkipTaskbar(false)  // Show in taskbar
+                tray.setContextMenu(getContextMenu())  // Update menu
+              }
+            }] : []),
+            { label: 'POSITION', click: () => {
+              mainWindow.setBounds({
+                x: originalPosition.x,
+                y: originalPosition.y,
+                width: windowState.width,
+                height: windowState.height
+              })
+              mainWindow.show()
+              mainWindow.setSkipTaskbar(false)  // Show in taskbar
+              tray.setContextMenu(getContextMenu())  // Update menu
+            }}
+          ]
+        },
+        { type: 'separator' },
+        { label: 'QUIT', click: () => {
+          app.isQuitting = true
+          app.quit()
+        }}
+      ])
+    }
+
     tray.setToolTip('AtomSuite Boilerplate')
-    tray.setContextMenu(contextMenu)
+    tray.setContextMenu(getContextMenu())
 
     tray.on('click', () => {
       if (mainWindow.isVisible()) {
@@ -136,7 +150,14 @@ function createTray() {
         mainWindow.show()
         mainWindow.setSkipTaskbar(false)
       }
+      tray.setContextMenu(getContextMenu())  // Update menu
     })
+
+    // Listen for window state changes to update the menu
+    mainWindow.on('minimize', () => tray.setContextMenu(getContextMenu()))
+    mainWindow.on('restore', () => tray.setContextMenu(getContextMenu()))
+    mainWindow.on('show', () => tray.setContextMenu(getContextMenu()))
+    mainWindow.on('hide', () => tray.setContextMenu(getContextMenu()))
   }
 }
 
