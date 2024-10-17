@@ -316,8 +316,19 @@ body
           border: 1px solid #01a2ff
           font-size: 14.5px
 
+          // Hide the default icon and show the folder-open icon on hover
+          i:not(.fa-folder-open)
+            display: none
+
+          i.fa-folder-open
+            display: inline-block
+
         i
           font-size: 16px
+
+        // Add this new rule for the folder-open icon
+        i.fa-folder-open
+          display: none
 
 #main-content-2
   background-color: $main-content-2-background

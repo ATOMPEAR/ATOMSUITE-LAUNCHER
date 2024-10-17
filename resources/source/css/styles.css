@@ -414,8 +414,20 @@ body {
   font-size: 14.5px;
 }
 
+#main-content-1 .content-wrapper .right-div .program-button:hover i:not(.fa-folder-open) {
+  display: none;
+}
+
+#main-content-1 .content-wrapper .right-div .program-button:hover i.fa-folder-open {
+  display: inline-block;
+}
+
 #main-content-1 .content-wrapper .right-div .program-button i {
   font-size: 16px;
+}
+
+#main-content-1 .content-wrapper .right-div .program-button i.fa-folder-open {
+  display: none;
 }
 
 #main-content-2 {
