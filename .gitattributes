@@ -1,0 +1,49 @@
+# SET DEFAULT BEHAVIOR TO AUTOMATICALLY NORMALIZE LINE ENDINGS.
+* text=auto
+
+# SOURCE CODE
+*.html text
+*.sass text
+*.js text
+*.json text
+
+# DECLARE FILES THAT WILL ALWAYS HAVE LF LINE ENDINGS ON CHECKOUT.
+*.sh text eol=lf
+
+# DENOTE ALL FILES THAT ARE TRULY BINARY AND SHOULD NOT BE MODIFIED.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+*.pyc binary
+*.pdf binary
+
+# SPECIFIC FOR ELECTRON
+*.node filter=lfs diff=lfs merge=lfs -text
+
+# EXCLUDE FILES FROM EXPORTING
+# .gitattributes export-ignore
+# .gitignore export-ignore
+# .gitkeep export-ignore
+
+# LINGUIST LANGUAGE OVERRIDES
+*.sass linguist-language=Sass
+
+# MARKED AS GENERATED FILES
+package-lock.json linguist-generated=true
+styles.css linguist-generated=true
+styles.css.map linguist-generated=true

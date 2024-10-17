@@ -1,0 +1,13 @@
+{
+  "watch": [
+    "resources/source/java/**/*.js",
+    "resources/**/*.html",
+    "resources/source/sass/**/*.sass",
+    "resources/**/*.css"
+  ],
+  "ignore": [
+    "resources/source/java/renderer.js"
+  ],
+  "ext": "js,html,sass,css",
+  "exec": "electron ."
+}

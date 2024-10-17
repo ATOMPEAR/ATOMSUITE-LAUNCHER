@@ -1,0 +1,16 @@
+{
+  "name": "atomsuite-boilerplate",
+  "version": "1.0.1",
+  "description": "A comprehensive starter template for building cross-platform desktop applications",
+  "main": "resources/source/java/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon"
+  },
+  "author": "Dustin Angeletti",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^32.1.2",
+    "nodemon": "^3.0.2"
+  }
+}

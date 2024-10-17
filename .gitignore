@@ -1,0 +1,7 @@
+# IGNORE DEV FOLDERS
+node_modules/
+backups/
+logging/
+dist/
+
+# IGNORE DEV FILES
