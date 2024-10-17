@@ -309,3 +309,28 @@ body
   font-weight: 900
   font-display: block
   src: url("../../assets/fontawesome/webfonts/fa-solid-900.woff2") format("woff2")
+
+// Add this to the existing styles
+#toggle-search
+  background-color: transparent
+  color: $titlebar-text-color
+  font-size: 14px
+  width: auto
+  height: auto
+  margin-right: 10px
+
+  &:hover
+    color: $control-button-hover-color
+
+#main-content-1
+  .quick-command
+    overflow: hidden
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out
+    max-height: 0
+    opacity: 0
+    display: none // Add this line to hide it by default
+
+    &.visible
+      max-height: 30px
+      opacity: 1
+      display: flex // Add this line to show it when visible

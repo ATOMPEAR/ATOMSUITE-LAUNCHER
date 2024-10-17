@@ -58,4 +58,33 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault()
     window.electronAPI.showTitlebarIconContextMenu()
   })
+
+  // Toggle search functionality
+  const toggleSearchButton = document.getElementById('toggle-search');
+  const quickCommandForm = document.querySelector('.quick-command');
+
+  // Ensure quick command is hidden by default
+  quickCommandForm.style.display = 'none';
+  quickCommandForm.classList.remove('visible');
+
+  toggleSearchButton.addEventListener('click', () => {
+    if (quickCommandForm.classList.contains('visible')) {
+      // Closing animation
+      quickCommandForm.style.maxHeight = '0px';
+      quickCommandForm.style.opacity = '0';
+      setTimeout(() => {
+        quickCommandForm.classList.remove('visible');
+        quickCommandForm.style.display = 'none';  // Hide after animation
+      }, 300); // Match this delay with the transition duration in CSS
+    } else {
+      // Opening animation
+      quickCommandForm.style.display = 'flex';  // Show before animation
+      setTimeout(() => {
+        quickCommandForm.classList.add('visible');
+        quickCommandForm.style.maxHeight = '30px';
+        quickCommandForm.style.opacity = '1';
+        quickCommandForm.querySelector('input[type="text"]').focus();
+      }, 10); // Small delay to ensure display: flex is applied before the animation starts
+    }
+  });
 })
