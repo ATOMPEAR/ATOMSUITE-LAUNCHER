@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron')
+const { app, BrowserWindow, ipcMain, Tray, Menu, screen } = require('electron')
 const path = require('path')
 
 let tray = null
@@ -11,6 +11,18 @@ let windowState = {
 }
 
 function createWindow () {
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize
+  const windowWidth = 400
+  const windowHeight = 600
+  const padding = 10  // Distance from screen edges
+
+  windowState = {
+    width: windowWidth,
+    height: windowHeight,
+    x: width - windowWidth - padding,
+    y: height - windowHeight - padding
+  }
+
   mainWindow = new BrowserWindow({
     width: windowState.width,
     height: windowState.height,
@@ -27,7 +39,7 @@ function createWindow () {
     },
     icon: path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico')
   })
-  
+
   mainWindow.loadFile(path.join(__dirname, '..', '..', 'index.html'))
 
   // Store window size and position when it's about to be hidden
