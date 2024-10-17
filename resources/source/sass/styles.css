@@ -74,7 +74,6 @@ body {
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
   -webkit-app-region: no-drag;
-  cursor: pointer;
   position: relative;
 }
 
