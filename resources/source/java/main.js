@@ -3,14 +3,23 @@ const path = require('path')
 
 let tray = null
 let mainWindow = null
+let windowState = {
+  width: 400,
+  height: 600,
+  x: undefined,
+  y: undefined
+}
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 400,
-    height: 600,
+    width: windowState.width,
+    height: windowState.height,
+    x: windowState.x,
+    y: windowState.y,
     frame: false,
     transparent: true,
-    resizable: false,  // Add this line to make the window not resizable
+    resizable: false,
+    skipTaskbar: false,  // Show in taskbar by default
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -21,30 +30,52 @@ function createWindow () {
   
   mainWindow.loadFile(path.join(__dirname, '..', '..', 'index.html'))
 
-  // Listen for the 'minimize' event
+  // Store window size and position when it's about to be hidden
   mainWindow.on('minimize', (event) => {
     event.preventDefault()
+    storeWindowState()
     mainWindow.hide()
+    mainWindow.setSkipTaskbar(true)  // Hide from taskbar
     if (tray === null) {
       createTray()
     }
   })
 
-  // Listen for the 'close' event
   mainWindow.on('close', (event) => {
     if (!app.isQuitting) {
       event.preventDefault()
+      storeWindowState()
       mainWindow.hide()
+      mainWindow.setSkipTaskbar(true)  // Hide from taskbar
+      if (tray === null) {
+        createTray()
+      }
     }
     return false
   })
+}
+
+function storeWindowState() {
+  const bounds = mainWindow.getBounds()
+  windowState = {
+    width: bounds.width,
+    height: bounds.height,
+    x: bounds.x,
+    y: bounds.y
+  }
+}
+
+function restoreWindowState() {
+  mainWindow.setBounds(windowState)
 }
 
 function createTray() {
   tray = new Tray(path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'))
   const contextMenu = Menu.buildFromTemplate([
     { label: 'SHOW', click: () => {
+      restoreWindowState()
       mainWindow.show()
+      mainWindow.setSkipTaskbar(false)  // Show in taskbar
       if (tray) tray.destroy()
       tray = null
     }},
@@ -57,7 +88,9 @@ function createTray() {
   tray.setContextMenu(contextMenu)
 
   tray.on('click', () => {
+    restoreWindowState()
     mainWindow.show()
+    mainWindow.setSkipTaskbar(false)  // Show in taskbar
     if (tray) tray.destroy()
     tray = null
   })
@@ -79,6 +112,10 @@ app.whenReady().then(() => {
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow()
+    } else {
+      restoreWindowState()
+      mainWindow.show()
+      mainWindow.setSkipTaskbar(false)  // Show in taskbar
     }
   })
 })
