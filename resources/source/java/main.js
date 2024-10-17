@@ -6,10 +6,11 @@ let mainWindow = null
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 400,
     height: 600,
     frame: false,
-    transparent: true,  // Add this line to enable transparency
+    transparent: true,
+    resizable: false,  // Add this line to make the window not resizable
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
