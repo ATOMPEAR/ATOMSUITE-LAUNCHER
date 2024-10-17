@@ -63,13 +63,6 @@ function createTray() {
 
 function createTitlebarIconContextMenu() {
   return Menu.buildFromTemplate([
-    { label: 'MAXIMIZE', click: () => {
-      if (mainWindow.isMaximized()) {
-        mainWindow.unmaximize()
-      } else {
-        mainWindow.maximize()
-      }
-    }},
     { label: 'MINIMIZE', click: () => mainWindow.minimize() },
     { label: 'QUIT', click: () => {
       app.isQuitting = true
@@ -103,16 +96,6 @@ ipcMain.handle('show-titlebar-icon-context-menu', (event) => {
 
 ipcMain.handle('minimize-window', () => {
   if (mainWindow) mainWindow.minimize()
-})
-
-ipcMain.handle('maximize-window', () => {
-  if (mainWindow) {
-    if (mainWindow.isMaximized()) {
-      mainWindow.unmaximize()
-    } else {
-      mainWindow.maximize()
-    }
-  }
 })
 
 ipcMain.handle('close-window', () => {

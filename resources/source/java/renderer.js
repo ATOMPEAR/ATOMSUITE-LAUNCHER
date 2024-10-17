@@ -1,12 +1,7 @@
 // This file is executed in the renderer process
 document.addEventListener('DOMContentLoaded', () => {
-  // Keep the window control button event listeners
   document.getElementById('minimize-button').addEventListener('click', () => {
     window.electronAPI.minimizeWindow()
-  })
-
-  document.getElementById('maximize-button').addEventListener('click', () => {
-    window.electronAPI.maximizeWindow()
   })
 
   document.getElementById('close-button').addEventListener('click', () => {
