@@ -69,6 +69,35 @@ function createWindow () {
       return false
     }
   })
+
+  // Add this IPC handler
+  ipcMain.on('resize-window', (event, width) => {
+    const currentBounds = mainWindow.getBounds();
+    mainWindow.setBounds({
+      x: currentBounds.x,
+      y: currentBounds.y,
+      width: width,
+      height: currentBounds.height
+    });
+  });
+
+  ipcMain.on('resize-and-move-window', (event, width, direction) => {
+    const currentBounds = mainWindow.getBounds();
+    let newX = currentBounds.x;
+
+    if (direction === 'left') {
+      newX -= 40;
+    } else if (direction === 'right') {
+      newX += 40;
+    }
+
+    mainWindow.setBounds({
+      x: newX,
+      y: currentBounds.y,
+      width: width,
+      height: currentBounds.height
+    });
+  });
 }
 
 function storeWindowState() {

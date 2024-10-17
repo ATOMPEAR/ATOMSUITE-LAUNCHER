@@ -39,11 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
       mainContent1.style.display = 'none';
       mainContent2.classList.add('active');
       mainContent2.style.display = 'flex';
+      window.electronAPI.resizeAndMoveWindow(440, 'left');
     } else {
       mainContent2.classList.remove('active');
       mainContent2.style.display = 'none';
       mainContent1.classList.add('active');
       mainContent1.style.display = 'flex';
+      window.electronAPI.resizeAndMoveWindow(400, 'right');
     }
   });
 
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mainContent1.style.display = 'flex';
   mainContent2.classList.remove('active');
   mainContent2.style.display = 'none';
+  window.electronAPI.resizeAndMoveWindow(400, 'right');
 
   // Titlebar icon context menu functionality
   titlebarIcon.addEventListener('contextmenu', (e) => {
