@@ -166,11 +166,6 @@ function createTitlebarIconContextMenu() {
     {
       label: 'CONTROLS',
       submenu: [
-        { label: 'SHOW', click: () => {
-          restoreWindowState()
-          mainWindow.show()
-          mainWindow.setSkipTaskbar(false)  // Show in taskbar
-        }},
         { label: 'MINIMIZE', click: () => mainWindow.minimize() },
         { label: 'POSITION', click: () => {
           mainWindow.setBounds({
