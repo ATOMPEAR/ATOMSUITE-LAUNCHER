@@ -92,4 +92,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 10); // Small delay to ensure display: flex is applied before the animation starts
     }
   });
+
+  // Accordion functionality
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const accordionContent = header.nextElementSibling;
+      const isActive = header.classList.contains('active');
+
+      // Close all accordion items
+      document.querySelectorAll('.accordion-content').forEach(content => {
+        content.style.maxHeight = null;
+      });
+      document.querySelectorAll('.accordion-header').forEach(h => {
+        h.classList.remove('active');
+      });
+
+      // If the clicked item wasn't active, open it
+      if (!isActive) {
+        header.classList.add('active');
+        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+      }
+    });
+  });
 })

@@ -19,6 +19,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Terminus Nerd Font Bold Italic';
+  src: url("../../assets/fonts/terminus/TerminessNerdFont-BoldItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -262,6 +269,17 @@ body {
 
 #main-content-1 {
   background-color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
 }
 
 #main-content-1 .quick-command {
@@ -349,28 +367,101 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 400px;
+  width: 100%;
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+      -ms-flex: 1;
+          flex: 1;
   overflow: hidden;
 }
 
-#main-content-1 .content-wrapper .left-div, #main-content-1 .content-wrapper .right-div {
+#main-content-1 .content-wrapper .left-div {
+  width: 240px;
   height: 100%;
   overflow-y: auto;
+  background-color: #222222;
 }
 
-#main-content-1 .content-wrapper .left-div {
-  margin-right: 0;
-  background-color: #ffffff;
-  width: 240px;
+#main-content-1 .content-wrapper .left-div .accordion {
+  width: 100%;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item {
+  border-bottom: 1px solid #444444;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .accordion-header {
+  width: 100%;
+  padding: 15px;
+  background-color: #222222;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: "Terminus Nerd Font Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .accordion-header:hover {
+  background-color: #333333;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .accordion-header:after {
+  content: '\f107';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .accordion-header.active:after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.3s ease-out;
+  transition: max-height 0.3s ease-out;
+  background-color: #FFFFFF;
+  color: #222222;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .sub-menu-item {
+  display: block;
+  padding: 12px 15px;
+  color: #000000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Terminus Nerd Font Bold';
+  font-size: 14px;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .sub-menu-item:hover {
+  background-color: #d3d3d3;
+  color: #000000;
 }
 
 #main-content-1 .content-wrapper .right-div {
-  margin-left: 0;
-  background-color: #222222;
   width: 160px;
+  height: 100%;
+  background-color: #222222;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -382,10 +473,11 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding-top: 20px;
+  overflow-y: auto;
 }
 
 #main-content-1 .content-wrapper .right-div .program-button {
-  width: 140px;
+  width: 130px;
   height: 35px;
   background-color: #222222;
   color: #ffffff;
