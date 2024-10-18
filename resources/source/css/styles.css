@@ -164,8 +164,8 @@ body {
 }
 
 .control-button {
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: none;
   margin-top: -5px;
@@ -215,6 +215,18 @@ body {
 
 .control-button:last-child {
   margin-right: 0;
+}
+
+.control-button#snap-button:hover {
+  background-color: #00ff00;
+}
+
+.control-button#minimize-button:hover {
+  background-color: #ffa500;
+}
+
+.control-button#close-button:hover {
+  background-color: #ff0000;
 }
 
 #content {
@@ -578,7 +590,7 @@ body {
 #toggle-search {
   background-color: transparent;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 18px;
   width: auto;
   height: auto;
   margin-right: 10px;

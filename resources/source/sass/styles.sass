@@ -145,8 +145,8 @@ body
     margin-right: -2px // Move controls slightly to the right
 
 .control-button
-  width: 12px
-  height: 12px
+  width: 18px
+  height: 18px
   border-radius: 50%
   border: none
   margin-top: -5px
@@ -190,6 +190,15 @@ body
 
   &:last-child
     margin-right: 0 // Remove right margin from the last button
+
+  &#snap-button:hover
+    background-color: #00ff00 // Green color for snap button on hover
+
+  &#minimize-button:hover
+    background-color: #ffa500 // Orange color for minimize button on hover
+
+  &#close-button:hover
+    background-color: #ff0000 // Red color for close button on hover
 
 // Content styles
 #content
@@ -437,7 +446,7 @@ body
 #toggle-search
   background-color: transparent
   color: $titlebar-text-color
-  font-size: 12px
+  font-size: 18px
   width: auto
   height: auto
   margin-right: 10px
