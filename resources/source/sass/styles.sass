@@ -296,6 +296,11 @@ body
       overflow-y: auto
       background-color: #222222 // Changed to match the dark theme
 
+      .spacer
+        height: 100px
+        width: 300px
+        background-color: #222222
+
       .accordion
         width: 100%
 
@@ -338,7 +343,9 @@ body
             color: #222222
 
           .sub-menu-item
-            display: block
+            display: flex
+            justify-content: space-between
+            align-items: center
             padding: 12px 15px
             color: #000000
             text-decoration: none
@@ -350,6 +357,13 @@ body
             &:hover
               background-color: #d3d3d3
               color: #000000
+
+            .sub-menu-text
+              flex-grow: 1
+
+            i
+              font-size: 12px
+              margin-left: 10px
 
     .right-div
       width: 160px

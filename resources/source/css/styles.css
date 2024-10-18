@@ -381,6 +381,12 @@ body {
   background-color: #222222;
 }
 
+#main-content-1 .content-wrapper .left-div .spacer {
+  height: 100px;
+  width: 300px;
+  background-color: #222222;
+}
+
 #main-content-1 .content-wrapper .left-div .accordion {
   width: 100%;
 }
@@ -442,7 +448,15 @@ body {
 }
 
 #main-content-1 .content-wrapper .left-div .accordion .accordion-item .sub-menu-item {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 12px 15px;
   color: #000000;
   text-decoration: none;
@@ -456,6 +470,17 @@ body {
 #main-content-1 .content-wrapper .left-div .accordion .accordion-item .sub-menu-item:hover {
   background-color: #d3d3d3;
   color: #000000;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .sub-menu-item .sub-menu-text {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+#main-content-1 .content-wrapper .left-div .accordion .accordion-item .sub-menu-item i {
+  font-size: 12px;
+  margin-left: 10px;
 }
 
 #main-content-1 .content-wrapper .right-div {
