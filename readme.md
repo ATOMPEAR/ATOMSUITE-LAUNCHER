@@ -10,7 +10,9 @@ ATOMSUITE BOILERPLATE IS A COMPREHENSIVE STARTER TEMPLATE FOR BUILDING CROSS-PLA
 ![screenshot](readme/images/screenshot1.png)
 -->
 ![screenshot](readme/images/screenshot2.png)
+
 ![screenshot](readme/images/screenshot3.png)
+
 [![Watch the video](readme/images/screenshot1.mp4)](readme/images/screenshot1.mp4)
 
 ## FEATURES
