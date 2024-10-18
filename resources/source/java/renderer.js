@@ -120,11 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Quick-command search functionality
-  const quickCommandForm = document.getElementById('quick-command-form');
+  const quickCommandFormElement = document.getElementById('quick-command-form');
   const quickCommandInput = document.getElementById('quick-command-input');
   const accordionItems = document.querySelectorAll('.accordion-item');
 
-  quickCommandForm.addEventListener('submit', (e) => {
+  quickCommandFormElement.addEventListener('submit', (e) => {
     e.preventDefault();
     const searchTerm = quickCommandInput.value.toLowerCase();
     console.log(`Quick command search submitted with term: "${searchTerm}"`);
