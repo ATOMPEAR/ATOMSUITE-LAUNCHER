@@ -378,12 +378,13 @@ body {
   width: 240px;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   background-color: #222222;
 }
 
 #main-content-1 .content-wrapper .left-div .spacer {
   height: 100px;
-  width: 300px;
+  width: 100%;
   background-color: #222222;
 }
 
@@ -602,4 +603,41 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #333333;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666666;
+  border-radius: 5px;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #01A2FF;
+}
+
+.left-div::-webkit-scrollbar, .right-div::-webkit-scrollbar {
+  width: 8px;
+}
+
+.left-div::-webkit-scrollbar-track, .right-div::-webkit-scrollbar-track {
+  background: #222222;
+}
+
+.left-div::-webkit-scrollbar-thumb, .right-div::-webkit-scrollbar-thumb {
+  background: #444444;
+}
+
+.left-div::-webkit-scrollbar-thumb:hover, .right-div::-webkit-scrollbar-thumb:hover {
+  background: #01A2FF;
 }

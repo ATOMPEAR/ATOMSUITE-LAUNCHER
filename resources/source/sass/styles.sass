@@ -294,11 +294,12 @@ body
       width: 240px
       height: 100%
       overflow-y: auto
-      background-color: #222222 // Changed to match the dark theme
+      overflow-x: hidden // Add this line to prevent horizontal scrolling
+      background-color: #222222
 
       .spacer
         height: 100px
-        width: 300px
+        width: 100% // Change this from 300px to 100%
         background-color: #222222
 
       .accordion
@@ -456,3 +457,34 @@ body
       max-height: 30px
       opacity: 1
       display: flex // Add this line to show it when visible
+
+// Custom scrollbar styles
+::-webkit-scrollbar
+  width: 10px
+  height: 10px
+
+::-webkit-scrollbar-track
+  background: #333333
+  border-radius: 5px
+
+::-webkit-scrollbar-thumb
+  background: #666666
+  border-radius: 5px
+  transition: background 0.3s ease
+
+  &:hover
+    background: #01A2FF
+
+// Apply custom scrollbar to specific elements
+.left-div, .right-div
+  &::-webkit-scrollbar
+    width: 8px
+
+  &::-webkit-scrollbar-track
+    background: #222222
+
+  &::-webkit-scrollbar-thumb
+    background: #444444
+
+    &:hover
+      background: #01A2FF
