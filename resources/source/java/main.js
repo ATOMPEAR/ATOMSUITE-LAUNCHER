@@ -23,10 +23,10 @@ function createSplashWindow() {
     transparent: true,
     frame: false,
     alwaysOnTop: true,
-    skipTaskbar: true,  // Add this line to hide from taskbar
+    skipTaskbar: true,
     webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
 
@@ -119,10 +119,24 @@ function createWindow () {
     });
   });
 
-  // Show the window when it's ready to be displayed
+  let loadingProgress = 0;
+  const loadingInterval = setInterval(() => {
+    loadingProgress += 10;
+    if (splashWindow && !splashWindow.isDestroyed()) {
+      splashWindow.webContents.send('update-loading-progress', loadingProgress);
+    }
+    if (loadingProgress >= 100) {
+      clearInterval(loadingInterval);
+      if (splashWindow && !splashWindow.isDestroyed()) {
+        splashWindow.destroy();
+      }
+      mainWindow.show();
+    }
+  }, 500); // Adjust this value to change the loading speed
+
   mainWindow.once('ready-to-show', () => {
-    mainWindow.show()
-    splashWindow.destroy()  // Destroy the splash window when the main window is ready
+    // Don't destroy splash window or show main window here
+    // The interval above will handle it
   })
 }
 

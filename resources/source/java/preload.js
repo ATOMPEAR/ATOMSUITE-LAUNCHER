@@ -8,4 +8,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   snapWindow: () => ipcRenderer.invoke('snap-window'),
   resizeWindow: (width) => ipcRenderer.send('resize-window', width),
   resizeAndMoveWindow: (width, direction) => ipcRenderer.send('resize-and-move-window', width, direction),
+
+  // Add this line for the splash screen
+  onUpdateLoadingProgress: (callback) => ipcRenderer.on('update-loading-progress', callback),
 })
