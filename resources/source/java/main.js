@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu, screen } = require('electron')
 const path = require('path')
 
+// Defer loading of non-essential modules
 let tray = null
 let mainWindow = null
 let splashWindow = null
@@ -16,6 +17,7 @@ let originalPosition = {
   y: undefined
 }
 
+// Keep this function, but we won't call it
 function createSplashWindow() {
   splashWindow = new BrowserWindow({
     width: 400,
@@ -60,17 +62,22 @@ function createWindow () {
     transparent: true,
     resizable: false,
     skipTaskbar: true,
-    alwaysOnTop: true,  // Add this line to make the window always on top
+    alwaysOnTop: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false
     },
     icon: path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'),
-    show: false  // Add this line to prevent the window from showing immediately
+    show: false
   })
 
   mainWindow.loadFile(path.join(__dirname, '..', '..', 'index.html'))
+
+  // Remove the splash screen logic and show the main window immediately
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 
   // Store window size and position when it's about to be hidden
   mainWindow.on('minimize', (event) => {
@@ -134,9 +141,9 @@ function createWindow () {
     }
   }, 500); // Adjust this value to change the loading speed
 
-  mainWindow.once('ready-to-show', () => {
-    // Don't destroy splash window or show main window here
-    // The interval above will handle it
+  // Optimize loading of the main window
+  mainWindow.webContents.on('did-finish-load', () => {
+    // Perform any necessary post-load operations here
   })
 }
 
@@ -154,8 +161,11 @@ function restoreWindowState() {
   mainWindow.setBounds(windowState)
 }
 
+// Defer tray creation
 function createTray() {
   if (tray === null) {
+    // Lazy load the Tray module
+    const { Tray } = require('electron')
     tray = new Tray(path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'))
 
     function getContextMenu() {
@@ -253,20 +263,10 @@ function createTitlebarIconContextMenu() {
   ])
 }
 
+// Optimize app ready event
 app.whenReady().then(() => {
-  createSplashWindow()
   createWindow()
-  createTray()
-
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
-    } else {
-      restoreWindowState()
-      mainWindow.show()
-      mainWindow.setSkipTaskbar(false)  // Show in taskbar
-    }
-  })
+  setImmediate(createTray)
 })
 
 app.on('window-all-closed', () => {
