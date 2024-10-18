@@ -3,6 +3,7 @@ const path = require('path')
 
 let tray = null
 let mainWindow = null
+let splashWindow = null
 let windowState = {
   width: 400,
   height: 600,
@@ -13,6 +14,23 @@ let windowState = {
 let originalPosition = {
   x: undefined,
   y: undefined
+}
+
+function createSplashWindow() {
+  splashWindow = new BrowserWindow({
+    width: 400,
+    height: 300,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
+    skipTaskbar: true,  // Add this line to hide from taskbar
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true
+    }
+  })
+
+  splashWindow.loadFile(path.join(__dirname, '..', '..', 'splash.html'))
 }
 
 function createWindow () {
@@ -41,13 +59,15 @@ function createWindow () {
     frame: false,
     transparent: true,
     resizable: false,
-    skipTaskbar: false,  // Show in taskbar by default
+    skipTaskbar: true,
+    alwaysOnTop: true,  // Add this line to make the window always on top
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false
     },
-    icon: path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico')
+    icon: path.join(__dirname, '..', '..', 'assets', 'icons', 'favicons', 'favicon1.ico'),
+    show: false  // Add this line to prevent the window from showing immediately
   })
 
   mainWindow.loadFile(path.join(__dirname, '..', '..', 'index.html'))
@@ -98,6 +118,12 @@ function createWindow () {
       height: currentBounds.height
     });
   });
+
+  // Show the window when it's ready to be displayed
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+    splashWindow.destroy()  // Destroy the splash window when the main window is ready
+  })
 }
 
 function storeWindowState() {
@@ -169,15 +195,12 @@ function createTray() {
       if (mainWindow.isVisible()) {
         if (mainWindow.isMinimized()) {
           mainWindow.restore()
-          mainWindow.setSkipTaskbar(false)
         } else {
           mainWindow.minimize()
-          mainWindow.setSkipTaskbar(true)
         }
       } else {
         restoreWindowState()
         mainWindow.show()
-        mainWindow.setSkipTaskbar(false)
       }
       tray.setContextMenu(getContextMenu())  // Update menu
     })
@@ -217,8 +240,9 @@ function createTitlebarIconContextMenu() {
 }
 
 app.whenReady().then(() => {
+  createSplashWindow()
   createWindow()
-  createTray()  // Create tray icon when app is ready
+  createTray()
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
