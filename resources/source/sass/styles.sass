@@ -450,6 +450,9 @@ body
       &:hover
         color: $titlebar-icon-hover-color // Match titlebar icon hover color
 
+      &.active
+        background-color: rgba(255, 255, 255, 0.1)
+
   .content-area
     flex: 1
     height: 560px
@@ -457,6 +460,13 @@ body
     overflow-y: auto
     margin: 0
     padding: 0
+
+    .content-section
+      display: none
+      padding: 20px
+
+      &.active
+        display: block
 
 // Responsive design
 @media (max-width: 600px)

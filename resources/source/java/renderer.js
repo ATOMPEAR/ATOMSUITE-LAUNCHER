@@ -171,4 +171,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   console.log('All event listeners set up');
+
+  // Sidebar menu functionality for main-content-2
+  const sidebarButtons = document.querySelectorAll('#main-content-2 .sidebar-menu .menu-item');
+  const contentSections = document.querySelectorAll('#main-content-2 .content-area .content-section');
+
+  function setActiveContent(contentId) {
+    console.log(`Setting active content: ${contentId}`);
+
+    // Hide all content sections
+    contentSections.forEach(section => {
+      section.classList.remove('active');
+      section.style.display = 'none';
+    });
+
+    // Show the selected content section
+    const selectedContent = document.getElementById(`${contentId}-content`);
+    if (selectedContent) {
+      selectedContent.classList.add('active');
+      selectedContent.style.display = 'block';
+    }
+
+    // Update active state of sidebar buttons
+    sidebarButtons.forEach(btn => btn.classList.remove('active'));
+    const activeButton = document.querySelector(`#main-content-2 .sidebar-menu .menu-item[data-content="${contentId}"]`);
+    if (activeButton) {
+      activeButton.classList.add('active');
+    }
+  }
+
+  sidebarButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const contentId = button.getAttribute('data-content');
+      setActiveContent(contentId);
+    });
+  });
+
+  // Set initial active content to home
+  setActiveContent('home');
+
+  console.log('All event listeners set up');
 })
