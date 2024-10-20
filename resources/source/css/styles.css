@@ -607,15 +607,143 @@ body {
   color: #01A2FF;
 }
 
+#main-content-2 .sidebar-menu .menu-item.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#main-content-2 .sidebar-menu .menu-item[data-content="ai"]:hover, #main-content-2 .sidebar-menu .menu-item[data-content="ai"].active {
+  color: #00BFFF;
+}
+
 #main-content-2 .content-area {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   height: 560px;
   background-color: #ffffff;
-  overflow-y: auto;
+  overflow: hidden;
   margin: 0;
   padding: 0;
+}
+
+#main-content-2 .content-area .content-section {
+  display: none;
+  height: 100%;
+}
+
+#main-content-2 .content-area .content-section.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps, #main-content-2 .content-area #home-content .metro-start-menu .all-apps {
+  padding: 10px;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  background-color: #0078D7;
+  overflow-y: auto;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps h3 {
+  color: white;
+  margin-bottom: 10px;
+  font-family: "Terminus Nerd Font Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(80px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile {
+  background-color: #00A4EF;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile:hover {
+  background-color: #0091DA;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile i {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile span {
+  display: block;
+  font-size: 12px;
+  font-family: "Terminus Nerd Font", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .all-apps {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: #F2F2F2;
+  overflow-y: auto;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .all-apps h3 {
+  color: #333;
+  margin-bottom: 10px;
+  font-family: "Terminus Nerd Font Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .all-apps .app-list .app-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .all-apps .app-list .app-item:hover {
+  background-color: #E6E6E6;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .all-apps .app-list .app-item i {
+  font-size: 16px;
+  margin-right: 8px;
+  color: #0078D7;
+}
+
+#main-content-2 .content-area #home-content .metro-start-menu .all-apps .app-list .app-item span {
+  color: #333;
+  font-family: "Terminus Nerd Font", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 @media (max-width: 600px) {

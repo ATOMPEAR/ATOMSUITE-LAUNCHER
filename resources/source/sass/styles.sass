@@ -460,17 +460,93 @@ body
   .content-area
     flex: 1
     height: 560px
-    background-color: $main-content-1-background // Match main content background color
-    overflow-y: auto
+    background-color: $main-content-1-background
+    overflow: hidden
     margin: 0
     padding: 0
 
     .content-section
       display: none
-      padding: 20px
+      height: 100%
 
       &.active
-        display: block
+        display: flex
+        flex-direction: column
+
+    #home-content
+      .metro-start-menu
+        display: flex
+        flex-direction: column
+        height: 100%
+
+        .pinned-apps, .all-apps
+          padding: 10px
+
+        .pinned-apps
+          flex: 2
+          background-color: #0078D7
+          overflow-y: auto
+
+          h3
+            color: white
+            margin-bottom: 10px
+            font-family: 'Terminus Nerd Font Bold', $font-stack
+
+          .app-grid
+            display: grid
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr))
+            gap: 10px
+
+            .app-tile
+              background-color: #00A4EF
+              color: white
+              padding: 10px
+              text-align: center
+              cursor: pointer
+              transition: background-color 0.3s ease
+
+              &:hover
+                background-color: #0091DA
+
+              i
+                font-size: 24px
+                margin-bottom: 5px
+
+              span
+                display: block
+                font-size: 12px
+                font-family: 'Terminus Nerd Font', $font-stack
+
+        .all-apps
+          flex: 1
+          background-color: #F2F2F2
+          overflow-y: auto
+
+          h3
+            color: #333
+            margin-bottom: 10px
+            font-family: 'Terminus Nerd Font Bold', $font-stack
+
+          .app-list
+            .app-item
+              display: flex
+              align-items: center
+              padding: 8px
+              cursor: pointer
+              transition: background-color 0.3s ease
+
+              &:hover
+                background-color: #E6E6E6
+
+              i
+                font-size: 16px
+                margin-right: 8px
+                color: #0078D7
+
+              span
+                color: #333
+                font-family: 'Terminus Nerd Font', $font-stack
+                font-size: 14px
 
 // Responsive design
 @media (max-width: 600px)
