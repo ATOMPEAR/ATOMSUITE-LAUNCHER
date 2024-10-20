@@ -225,6 +225,28 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'paint', name: 'Paint', icon: 'fas fa-paint-brush' },
     { id: 'notes', name: 'Sticky Notes', icon: 'fas fa-sticky-note' },
     { id: 'clock', name: 'Alarms & Clock', icon: 'fas fa-clock' },
+    { id: 'weather', name: 'Weather', icon: 'fas fa-cloud-sun' },
+    { id: 'music', name: 'Music Player', icon: 'fas fa-music' },
+    { id: 'photos', name: 'Photos', icon: 'fas fa-images' },
+    { id: 'mail', name: 'Mail', icon: 'fas fa-envelope' },
+    { id: 'calendar', name: 'Calendar', icon: 'fas fa-calendar-alt' },
+    { id: 'browser', name: 'Web Browser', icon: 'fas fa-globe' },
+    { id: 'fileexplorer', name: 'File Explorer', icon: 'fas fa-folder-open' },
+    { id: 'settings', name: 'Settings', icon: 'fas fa-cog' },
+    { id: 'store', name: 'App Store', icon: 'fas fa-store' },
+    { id: 'contacts', name: 'Contacts', icon: 'fas fa-address-book' },
+    { id: 'voice', name: 'Voice Recorder', icon: 'fas fa-microphone' },
+    { id: 'games', name: 'Games', icon: 'fas fa-gamepad' },
+    { id: 'texteditor', name: 'Text Editor', icon: 'fas fa-file-alt' },
+    { id: 'terminal', name: 'Terminal', icon: 'fas fa-terminal' },
+    { id: 'calculator', name: 'Calculator', icon: 'fas fa-calculator' },
+    { id: 'reminders', name: 'Reminders', icon: 'fas fa-bell' },
+    { id: 'podcasts', name: 'Podcasts', icon: 'fas fa-podcast' },
+    { id: 'books', name: 'Books', icon: 'fas fa-book' },
+    { id: 'stocks', name: 'Stocks', icon: 'fas fa-chart-line' },
+    { id: 'notes', name: 'Notes', icon: 'fas fa-sticky-note' },
+    { id: 'facetime', name: 'FaceTime', icon: 'fas fa-video' },
+    { id: 'messages', name: 'Messages', icon: 'fas fa-comments' }
   ];
 
   function createAppElement(app, isPinned) {
