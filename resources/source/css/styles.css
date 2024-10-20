@@ -164,8 +164,8 @@ body {
 }
 
 .control-button {
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: none;
   margin-top: -5px;
@@ -562,15 +562,60 @@ body {
 
 #main-content-2 {
   background-color: #ffffff;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  color: #ffffff;
+  width: 440px;
+  height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
-#main-content-2 h1, #main-content-2 p {
+#main-content-2 .sidebar-menu {
+  width: 40px;
+  height: 560px;
+  background-color: #222222;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 20px;
+}
+
+#main-content-2 .sidebar-menu .menu-item {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  border: none;
   color: #ffffff;
-  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+#main-content-2 .sidebar-menu .menu-item:hover {
+  color: #01A2FF;
+}
+
+#main-content-2 .content-area {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 560px;
+  background-color: #ffffff;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 600px) {

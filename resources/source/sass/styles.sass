@@ -422,12 +422,41 @@ body
 
 #main-content-2
   background-color: $main-content-2-background
-  justify-content: center // Center content vertically
-  color: #ffffff
+  width: 440px
+  height: 600px
+  display: flex
+  flex-direction: row
 
-  h1, p
-    color: #ffffff // Ensure text is visible on dark background
-    text-align: center
+  .sidebar-menu
+    width: 40px
+    height: 560px
+    background-color: $titlebar-background // Match titlebar background color
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding-top: 20px
+
+    .menu-item
+      width: 30px
+      height: 30px
+      margin-bottom: 10px
+      background-color: transparent
+      border: none
+      color: $titlebar-text-color // Match titlebar text color
+      font-size: 16px
+      cursor: pointer
+      transition: color 0.3s ease
+
+      &:hover
+        color: $titlebar-icon-hover-color // Match titlebar icon hover color
+
+  .content-area
+    flex: 1
+    height: 560px
+    background-color: $main-content-1-background // Match main content background color
+    overflow-y: auto
+    margin: 0
+    padding: 0
 
 // Responsive design
 @media (max-width: 600px)
