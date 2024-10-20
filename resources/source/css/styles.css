@@ -826,3 +826,26 @@ body {
 .left-div::-webkit-scrollbar-thumb:hover, .right-div::-webkit-scrollbar-thumb:hover {
   background: #01A2FF;
 }
+
+#main-content-2 #home-content .metro-start-menu .app-grid .app-tile, #main-content-2 #home-content .metro-start-menu .app-grid .app-item, #main-content-2 #home-content .metro-start-menu .app-list .app-tile, #main-content-2 #home-content .metro-start-menu .app-list .app-item {
+  position: relative;
+}
+
+#main-content-2 #home-content .metro-start-menu .app-grid .app-tile .pin-button, #main-content-2 #home-content .metro-start-menu .app-grid .app-item .pin-button, #main-content-2 #home-content .metro-start-menu .app-list .app-tile .pin-button, #main-content-2 #home-content .metro-start-menu .app-list .app-item .pin-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 10px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+#main-content-2 #home-content .metro-start-menu .app-grid .app-tile .pin-button:hover, #main-content-2 #home-content .metro-start-menu .app-grid .app-item .pin-button:hover, #main-content-2 #home-content .metro-start-menu .app-list .app-tile .pin-button:hover, #main-content-2 #home-content .metro-start-menu .app-list .app-item .pin-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}

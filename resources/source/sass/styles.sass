@@ -616,3 +616,32 @@ body
 
     &:hover
       background: #01A2FF
+
+#main-content-2
+  // ... (previous styles remain unchanged)
+
+  #home-content
+    .metro-start-menu
+      // ... (previous styles remain unchanged)
+
+      .app-grid, .app-list
+        .app-tile, .app-item
+          position: relative
+
+          .pin-button
+            position: absolute
+            top: 5px
+            right: 5px
+            background-color: rgba(0, 0, 0, 0.5)
+            color: white
+            border: none
+            border-radius: 3px
+            padding: 2px 5px
+            font-size: 10px
+            cursor: pointer
+            transition: background-color 0.3s ease
+
+            &:hover
+              background-color: rgba(0, 0, 0, 0.7)
+
+// ... (rest of the styles remain unchanged)

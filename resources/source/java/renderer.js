@@ -211,4 +211,76 @@ document.addEventListener('DOMContentLoaded', () => {
   setActiveContent('home');
 
   console.log('All event listeners set up');
-})
+
+  // App management functionality
+  const pinnedAppsGrid = document.getElementById('pinned-apps-grid');
+  const allAppsList = document.getElementById('all-apps-list');
+
+  const apps = [
+    { id: 'calculator', name: 'Calculator', icon: 'fas fa-calculator' },
+    { id: 'camera', name: 'Camera', icon: 'fas fa-camera' },
+    { id: 'maps', name: 'Maps', icon: 'fas fa-map' },
+    { id: 'news', name: 'News', icon: 'fas fa-newspaper' },
+    { id: 'movies', name: 'Movies & TV', icon: 'fas fa-video' },
+    { id: 'paint', name: 'Paint', icon: 'fas fa-paint-brush' },
+    { id: 'notes', name: 'Sticky Notes', icon: 'fas fa-sticky-note' },
+    { id: 'clock', name: 'Alarms & Clock', icon: 'fas fa-clock' },
+  ];
+
+  function createAppElement(app, isPinned) {
+    const appElement = document.createElement('div');
+    appElement.className = isPinned ? 'app-tile' : 'app-item';
+    appElement.innerHTML = `
+      <i class="${app.icon}"></i>
+      <span>${app.name}</span>
+      <button class="pin-button" data-app-id="${app.id}">${isPinned ? 'Unpin' : 'Pin'}</button>
+    `;
+    return appElement;
+  }
+
+  function renderApps() {
+    const pinnedApps = JSON.parse(localStorage.getItem('pinnedApps')) || [];
+
+    pinnedAppsGrid.innerHTML = '';
+    allAppsList.innerHTML = '';
+
+    apps.forEach(app => {
+      const isPinned = pinnedApps.includes(app.id);
+      const appElement = createAppElement(app, isPinned);
+
+      if (isPinned) {
+        pinnedAppsGrid.appendChild(appElement);
+      } else {
+        allAppsList.appendChild(appElement);
+      }
+    });
+
+    addPinButtonListeners();
+  }
+
+  function addPinButtonListeners() {
+    const pinButtons = document.querySelectorAll('.pin-button');
+    pinButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const appId = e.target.getAttribute('data-app-id');
+        togglePinApp(appId);
+      });
+    });
+  }
+
+  function togglePinApp(appId) {
+    let pinnedApps = JSON.parse(localStorage.getItem('pinnedApps')) || [];
+
+    if (pinnedApps.includes(appId)) {
+      pinnedApps = pinnedApps.filter(id => id !== appId);
+    } else {
+      pinnedApps.push(appId);
+    }
+
+    localStorage.setItem('pinnedApps', JSON.stringify(pinnedApps));
+    renderApps();
+  }
+
+  // Initial render
+  renderApps();
+});
