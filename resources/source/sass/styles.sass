@@ -456,6 +456,10 @@ body
         &:hover, &.active
           color: #00BFFF // A bright blue color for the AI button
 
+      &[data-content="account"]
+        &:hover, &.active
+          color: #00BFFF // A gold color for the account button
+
   .content-area
     flex: 1
     height: 600px
@@ -559,6 +563,16 @@ body
     #calculator-content,
     #terminal-content,
     #ai-content
+      padding: 20px
+      height: 100%
+      overflow-y: auto
+      box-sizing: border-box
+
+      h2
+        margin-top: 0
+        margin-bottom: 20px
+
+    #account-content
       padding: 20px
       height: 100%
       overflow-y: auto
