@@ -198,6 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeButton) {
       activeButton.classList.add('active');
     }
+
+    if (contentId === 'account') {
+      initializeAccountSection();
+    }
   }
 
   sidebarButtons.forEach(button => {
@@ -307,4 +311,58 @@ document.addEventListener('DOMContentLoaded', () => {
   renderApps();
 
   console.log('All event listeners set up');
+
+  // Login and account functionality
+  const loginSection = document.getElementById('login-section');
+  const accountDetails = document.getElementById('account-details');
+  const loginForm = document.getElementById('login-form');
+  const logoutButton = document.getElementById('logout-button');
+
+  function checkLoginState() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+      loginSection.style.display = 'none';
+      accountDetails.style.display = 'block';
+    } else {
+      loginSection.style.display = 'block';
+      accountDetails.style.display = 'none';
+    }
+  }
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+
+    const result = await window.electronAPI.login(username, password);
+    if (result.success) {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userData', JSON.stringify(result.user));
+      checkLoginState();
+      updateUserInfo(result.user);
+    } else {
+      alert('Login failed: ' + result.message);
+    }
+  });
+
+  logoutButton.addEventListener('click', () => {
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('userData');
+    checkLoginState();
+  });
+
+  function updateUserInfo(user) {
+    document.querySelector('.user-details p:nth-child(1)').textContent = `Name: ${user.name}`;
+    document.querySelector('.user-details p:nth-child(2)').textContent = `Email: ${user.email}`;
+    document.querySelector('.user-details p:nth-child(3)').textContent = `Member Since: ${user.memberSince}`;
+  }
+
+  function initializeAccountSection() {
+    checkLoginState();
+
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      updateUserInfo(userData);
+    }
+  }
 });

@@ -11,4 +11,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   // Add this line for the splash screen
   onUpdateLoadingProgress: (callback) => ipcRenderer.on('update-loading-progress', callback),
+
+  login: (username, password) => ipcRenderer.invoke('login', username, password)
 })

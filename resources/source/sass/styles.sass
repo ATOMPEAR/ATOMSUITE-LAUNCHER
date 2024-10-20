@@ -577,10 +577,110 @@ body
       height: 100%
       overflow-y: auto
       box-sizing: border-box
+      color: $titlebar-text-color
+      background-color: $main-content-1-background
 
       h2
         margin-top: 0
         margin-bottom: 20px
+        color: $titlebar-text-color
+
+      .account-info
+        display: flex
+        margin-bottom: 30px
+
+        .profile-picture
+          width: 150px
+          margin-right: 30px
+          text-align: center
+
+          img
+            width: 100%
+            border-radius: 50%
+            margin-bottom: 10px
+
+          .change-picture-btn
+            width: 100%
+
+        .user-details
+          flex-grow: 1
+
+          h3
+            margin-top: 0
+            color: $titlebar-text-color
+
+      .account-settings, .subscription-info
+        margin-bottom: 30px
+
+        h3
+          color: $titlebar-text-color
+
+      .settings-btn
+        display: block
+        width: 100%
+        padding: 10px
+        margin-bottom: 10px
+        background-color: lighten($titlebar-background, 10%)
+        color: $titlebar-text-color
+        border: none
+        border-radius: 5px
+        cursor: pointer
+        transition: background-color 0.3s ease
+
+        &:hover
+          background-color: lighten($titlebar-background, 20%)
+
+      .subscription-info
+        p
+          margin-bottom: 10px
+
+      #login-section
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        height: 100%
+
+        h2
+          margin-bottom: 20px
+
+        #login-form
+          display: flex
+          flex-direction: column
+          width: 300px
+
+          input
+            margin-bottom: 10px
+            padding: 10px
+            border: 1px solid lighten($titlebar-background, 20%)
+            border-radius: 5px
+            background-color: lighten($titlebar-background, 5%)
+            color: $titlebar-text-color
+
+          button
+            padding: 10px
+            background-color: $titlebar-icon-hover-color
+            color: $titlebar-text-color
+            border: none
+            border-radius: 5px
+            cursor: pointer
+            transition: background-color 0.3s ease
+
+            &:hover
+              background-color: darken($titlebar-icon-hover-color, 10%)
+
+      #logout-button
+        margin-top: 20px
+        padding: 10px
+        background-color: $titlebar-icon-hover-color
+        color: $titlebar-text-color
+        border: none
+        border-radius: 5px
+        cursor: pointer
+        transition: background-color 0.3s ease
+
+        &:hover
+          background-color: darken($titlebar-icon-hover-color, 10%)
 
 // Responsive design
 @media (max-width: 600px)

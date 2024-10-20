@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu, screen } = require('electron')
 const path = require('path')
+const fs = require('fs')
 
 // Defer loading of non-essential modules
 let tray = null
@@ -300,4 +301,18 @@ ipcMain.handle('snap-window', () => {
       height: windowState.height
     })
   }
+})
+
+// Add this function to read the users.json file
+function getUsers() {
+  const usersPath = path.join(__dirname, '..', '..', 'users.json')
+  const usersData = fs.readFileSync(usersPath, 'utf8')
+  return JSON.parse(usersData).users
+}
+
+// Add this IPC handler for login
+ipcMain.handle('login', (event, username, password) => {
+  const users = getUsers()
+  const user = users.find(u => u.username === username && u.password === password)
+  return user ? { success: true, user } : { success: false, message: 'Invalid credentials' }
 })
