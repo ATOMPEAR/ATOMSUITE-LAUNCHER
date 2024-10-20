@@ -571,11 +571,12 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  overflow: hidden;
 }
 
 #main-content-2 .sidebar-menu {
   width: 40px;
-  height: 560px;
+  height: 600px;
   background-color: #222222;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -588,6 +589,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding-top: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 #main-content-2 .sidebar-menu .menu-item {
@@ -603,12 +606,8 @@ body {
   transition: color 0.3s ease;
 }
 
-#main-content-2 .sidebar-menu .menu-item:hover {
+#main-content-2 .sidebar-menu .menu-item:hover, #main-content-2 .sidebar-menu .menu-item.active {
   color: #01A2FF;
-}
-
-#main-content-2 .sidebar-menu .menu-item.active {
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 #main-content-2 .sidebar-menu .menu-item[data-content="ai"]:hover, #main-content-2 .sidebar-menu .menu-item[data-content="ai"].active {
@@ -619,16 +618,26 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  height: 560px;
+  height: 600px;
   background-color: #ffffff;
   overflow: hidden;
   margin: 0;
   padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 #main-content-2 .content-area .content-section {
   display: none;
   height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
 }
 
 #main-content-2 .content-area .content-section.active {
@@ -650,22 +659,27 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .pinned-apps, #main-content-2 .content-area #home-content .metro-start-menu .all-apps {
   padding: 10px;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .pinned-apps {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
-  background-color: #0078D7;
+  background-color: #222222;
   overflow-y: auto;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .pinned-apps h3 {
-  color: white;
+  color: #ffffff;
   margin-bottom: 10px;
   font-family: "Terminus Nerd Font Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
@@ -679,8 +693,8 @@ body {
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile {
-  background-color: #00A4EF;
-  color: white;
+  background-color: #3c3c3c;
+  color: #ffffff;
   padding: 10px;
   text-align: center;
   cursor: pointer;
@@ -689,7 +703,7 @@ body {
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile:hover {
-  background-color: #0091DA;
+  background-color: #555555;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile i {
@@ -700,19 +714,18 @@ body {
 #main-content-2 .content-area #home-content .metro-start-menu .pinned-apps .app-grid .app-tile span {
   display: block;
   font-size: 12px;
-  font-family: "Terminus Nerd Font", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .all-apps {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  background-color: #F2F2F2;
+  background-color: #2f2f2f;
   overflow-y: auto;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .all-apps h3 {
-  color: #333;
+  color: #ffffff;
   margin-bottom: 10px;
   font-family: "Terminus Nerd Font Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
@@ -731,19 +744,37 @@ body {
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .all-apps .app-list .app-item:hover {
-  background-color: #E6E6E6;
+  background-color: #484848;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .all-apps .app-list .app-item i {
   font-size: 16px;
   margin-right: 8px;
-  color: #0078D7;
+  color: #ffffff;
 }
 
 #main-content-2 .content-area #home-content .metro-start-menu .all-apps .app-list .app-item span {
-  color: #333;
-  font-family: "Terminus Nerd Font", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #ffffff;
   font-size: 14px;
+}
+
+#main-content-2 .content-area #settings-content,
+#main-content-2 .content-area #calculator-content,
+#main-content-2 .content-area #terminal-content,
+#main-content-2 .content-area #ai-content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#main-content-2 .content-area #settings-content h2,
+#main-content-2 .content-area #calculator-content h2,
+#main-content-2 .content-area #terminal-content h2,
+#main-content-2 .content-area #ai-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 600px) {
@@ -848,4 +879,22 @@ body {
 
 #main-content-2 #home-content .metro-start-menu .app-grid .app-tile .pin-button:hover, #main-content-2 #home-content .metro-start-menu .app-grid .app-item .pin-button:hover, #main-content-2 #home-content .metro-start-menu .app-list .app-tile .pin-button:hover, #main-content-2 #home-content .metro-start-menu .app-list .app-item .pin-button:hover {
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+#settings-content,
+#calculator-content,
+#terminal-content,
+#ai-content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#settings-content h2,
+#calculator-content h2,
+#terminal-content h2,
+#ai-content h2 {
+  margin-top: 0;
 }

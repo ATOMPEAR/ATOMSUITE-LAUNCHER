@@ -426,15 +426,17 @@ body
   height: 600px
   display: flex
   flex-direction: row
+  overflow: hidden
 
   .sidebar-menu
     width: 40px
-    height: 560px
-    background-color: $titlebar-background // Match titlebar background color
+    height: 600px
+    background-color: $titlebar-background
     display: flex
     flex-direction: column
     align-items: center
     padding-top: 20px
+    box-sizing: border-box
 
     .menu-item
       width: 30px
@@ -442,16 +444,13 @@ body
       margin-bottom: 10px
       background-color: transparent
       border: none
-      color: $titlebar-text-color // Match titlebar text color
+      color: $titlebar-text-color
       font-size: 16px
       cursor: pointer
       transition: color 0.3s ease
 
-      &:hover
-        color: $titlebar-icon-hover-color // Match titlebar icon hover color
-
-      &.active
-        background-color: rgba(255, 255, 255, 0.1)
+      &:hover, &.active
+        color: $titlebar-icon-hover-color
 
       &[data-content="ai"]
         &:hover, &.active
@@ -459,15 +458,20 @@ body
 
   .content-area
     flex: 1
-    height: 560px
+    height: 600px
     background-color: $main-content-1-background
     overflow: hidden
     margin: 0
     padding: 0
+    display: flex
+    flex-direction: column
 
     .content-section
       display: none
       height: 100%
+      margin: 0
+      padding: 0
+      overflow-y: auto
 
       &.active
         display: flex
@@ -478,17 +482,21 @@ body
         display: flex
         flex-direction: column
         height: 100%
+        margin: 0
+        padding: 0
 
         .pinned-apps, .all-apps
           padding: 10px
+          margin: 0
+          box-sizing: border-box
 
         .pinned-apps
           flex: 2
-          background-color: #0078D7
+          background-color: $titlebar-background // Change this line
           overflow-y: auto
 
           h3
-            color: white
+            color: $titlebar-text-color // Change this line
             margin-bottom: 10px
             font-family: 'Terminus Nerd Font Bold', $font-stack
 
@@ -498,15 +506,15 @@ body
             gap: 10px
 
             .app-tile
-              background-color: #00A4EF
-              color: white
+              background-color: lighten($titlebar-background, 10%) // Change this line
+              color: $titlebar-text-color // Change this line
               padding: 10px
               text-align: center
               cursor: pointer
               transition: background-color 0.3s ease
 
               &:hover
-                background-color: #0091DA
+                background-color: lighten($titlebar-background, 20%) // Change this line
 
               i
                 font-size: 24px
@@ -515,15 +523,14 @@ body
               span
                 display: block
                 font-size: 12px
-                font-family: 'Terminus Nerd Font', $font-stack
 
         .all-apps
           flex: 1
-          background-color: #F2F2F2
+          background-color: lighten($titlebar-background, 5%) // Change this line
           overflow-y: auto
 
           h3
-            color: #333
+            color: $titlebar-text-color // Change this line
             margin-bottom: 10px
             font-family: 'Terminus Nerd Font Bold', $font-stack
 
@@ -536,17 +543,30 @@ body
               transition: background-color 0.3s ease
 
               &:hover
-                background-color: #E6E6E6
+                background-color: lighten($titlebar-background, 15%) // Change this line
 
               i
                 font-size: 16px
                 margin-right: 8px
-                color: #0078D7
+                color: $titlebar-text-color // Change this line
 
               span
-                color: #333
-                font-family: 'Terminus Nerd Font', $font-stack
+                color: $titlebar-text-color // Change this line
                 font-size: 14px
+
+    // Styles for other content sections
+    #settings-content,
+    #calculator-content,
+    #terminal-content,
+    #ai-content
+      padding: 20px
+      height: 100%
+      overflow-y: auto
+      box-sizing: border-box
+
+      h2
+        margin-top: 0
+        margin-bottom: 20px
 
 // Responsive design
 @media (max-width: 600px)
@@ -645,3 +665,16 @@ body
               background-color: rgba(0, 0, 0, 0.7)
 
 // ... (rest of the styles remain unchanged)
+
+// Add these styles for other content sections
+#settings-content,
+#calculator-content,
+#terminal-content,
+#ai-content
+  padding: 20px
+  height: 100%
+  overflow-y: auto
+  box-sizing: border-box
+
+  h2
+    margin-top: 0 // Remove top margin from headings
