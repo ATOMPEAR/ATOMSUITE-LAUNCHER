@@ -614,10 +614,6 @@ body {
   color: #00BFFF;
 }
 
-#main-content-2 .sidebar-menu .menu-item[data-content="account"]:hover, #main-content-2 .sidebar-menu .menu-item[data-content="account"].active {
-  color: #00BFFF;
-}
-
 #main-content-2 .content-area {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -781,6 +777,7 @@ body {
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 #main-content-2 .content-area #account-content {
   padding: 20px;
   height: 100%;
@@ -947,6 +944,8 @@ body {
   background-color: #0082cd;
 }
 
+=======
+>>>>>>> parent of 2a4c017 (MAIN COMMENT)
 @media (max-width: 600px) {
   body {
     font-size: 14px;
