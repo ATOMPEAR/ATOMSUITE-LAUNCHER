@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoutButton = document.getElementById('logout-button');
 
   function checkLoginState() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
     if (isLoggedIn) {
       loginSection.style.display = 'none';
       accountDetails.style.display = 'block';
@@ -336,18 +336,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const result = await window.electronAPI.login(username, password);
     if (result.success) {
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userData', JSON.stringify(result.user));
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('userData', JSON.stringify(result.user));
       checkLoginState();
-      updateUserInfo(result.user);
+      updateUserInfo(result.user);  // Make sure this line is here
     } else {
       alert('Login failed: ' + result.message);
     }
   });
 
   logoutButton.addEventListener('click', () => {
-    localStorage.setItem('isLoggedIn', 'false');
-    localStorage.removeItem('userData');
+    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.removeItem('userData');
     checkLoginState();
   });
 
@@ -355,14 +355,45 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.user-details p:nth-child(1)').textContent = `Name: ${user.name}`;
     document.querySelector('.user-details p:nth-child(2)').textContent = `Email: ${user.email}`;
     document.querySelector('.user-details p:nth-child(3)').textContent = `Member Since: ${user.memberSince}`;
+
+    // Update the account details heading
+    const accountDetailsHeading = document.querySelector('#account-details h2');
+    if (accountDetailsHeading) {
+      accountDetailsHeading.textContent = `Account: ${user.name}`;
+    } else {
+      console.error('Account details heading not found');
+    }
+
+    // Update profile picture
+    const profilePicture = document.querySelector('.profile-picture img');
+    if (profilePicture) {
+      const defaultAvatar = 'assets/images/profilepic/default-avatar.png';
+      const imagePath = user.profilePicture || defaultAvatar;
+
+      // Use the Electron API to get the correct file path
+      window.electronAPI.getImagePath(imagePath)
+        .then(resolvedPath => {
+          profilePicture.src = resolvedPath;
+          profilePicture.alt = `${user.name}'s Profile Picture`;
+        })
+        .catch(error => {
+          console.error(`Failed to load profile picture: ${error}`);
+          window.electronAPI.getImagePath(defaultAvatar)
+            .then(defaultPath => {
+              profilePicture.src = defaultPath;
+            });
+        });
+    } else {
+      console.error('Profile picture element not found');
+    }
   }
 
   function initializeAccountSection() {
     checkLoginState();
 
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      const userData = JSON.parse(localStorage.getItem('userData'));
-      updateUserInfo(userData);
+    if (sessionStorage.getItem('isLoggedIn') === 'true') {
+      const userData = JSON.parse(sessionStorage.getItem('userData'));
+      updateUserInfo(userData);  // Make sure this line is here
     }
   }
 });
