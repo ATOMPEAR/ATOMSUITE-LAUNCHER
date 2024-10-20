@@ -283,4 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render
   renderApps();
+
+  console.log('All event listeners set up');
 });
